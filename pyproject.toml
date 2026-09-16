@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "medvfm-inspector"
+version = "0.1.0"
+description = "A model-agnostic microscope for inspecting vision foundation model representations in medical imaging."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "MedVFM-Inspector contributors" },
+]
+keywords = [
+  "medical-imaging",
+  "representation-analysis",
+  "vision-foundation-models",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "matplotlib>=3.10.9",
+  "medmnist>=3.0.2",
+  "numpy>=2.2.6",
+  "pillow>=10.0",
+  "scikit-learn>=1.7.2",
+  "torch>=2.0",
+  "torchvision>=0.29.0",
+  "transformers>=4.56,<6",
+  "typer>=0.12",
+]
+
+[dependency-groups]
+dev = [
+  "mypy>=1.10",
+  "pytest>=8.0",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+medvfm = "medvfm_inspector.cli:app"
+
+[project.urls]
+Documentation = "https://github.com/medvfm-inspector/medvfm-inspector"
+Repository = "https://github.com/medvfm-inspector/medvfm-inspector"
+Issues = "https://github.com/medvfm-inspector/medvfm-inspector/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/medvfm_inspector"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+extend-exclude = ["docs/MEDVFM_INSPECTOR_SPEC.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+packages = ["medvfm_inspector"]
+
+[[tool.mypy.overrides]]
+module = ["matplotlib.*", "sklearn.*"]
+ignore_missing_imports = true
