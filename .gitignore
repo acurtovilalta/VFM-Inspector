@@ -39,3 +39,6 @@ data/
 .DS_Store
 .idea/
 .vscode/
+
+# Docs
+AGENTS.md
