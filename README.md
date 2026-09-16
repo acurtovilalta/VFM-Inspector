@@ -122,23 +122,3 @@ outputs/pneumoniamnist_comparison/
 The report contains the experiment overview, model metadata, best validation
 linear-probe and k-NN layers, CKA heatmaps, selected PCA plots, and a concise
 summary of computed results.
-
-## Release Checklist
-
-Before tagging a release:
-
-```bash
-uv sync --dev
-uv run ruff check .
-uv run ruff format --check .
-uv run mypy src/medvfm_inspector
-uv run pytest
-uv run python examples/pneumoniamnist_comparison.py --help
-```
-
-Then run a quick real demo, inspect the generated HTML report, confirm the
-version, and create the git tag:
-
-```bash
-git tag v0.1.0
-```
